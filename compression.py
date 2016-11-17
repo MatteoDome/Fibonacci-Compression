@@ -14,7 +14,6 @@ def generate_sequence(n):
 		tmp = f1
 		f1 = f_sum
 		f_sum = tmp + f1
-	print(fib)
 	return fib
 
 
@@ -29,14 +28,24 @@ def encode(n):
 				code = '1' + code
 			else:
 				code = '0' + code
-			print(code)
 		return code
 	else:
 		print("Please enter a valid positive integer")
 		return 0
 
 def decode(n):
-	
+	if len(str(n)) > 1:
+		result = 0
+		fib = generate_sequence(n/2 +1)
+		n =[int(x) for x in str(n)]
+		n = n[:-1]
+		print(n)
+		print(fib)
+		for pos in range (0, len(n)):
+			result = result + fib[pos]*n[pos]
+
+		return result
+
 
 if __name__ == "__main__":
 	if sys.argv[1] == 'e' and sys.argv[2].isdigit():
@@ -47,5 +56,5 @@ if __name__ == "__main__":
 	if sys.argv[1] == 'd' and sys.argv[2].isdigit():
 		n = int(sys.argv[2])
 		print('Decoding ', n, ' using Fibonacci compression...')
-		output = encode(n)
+		output = decode(n)
 		print('The input ', n, 'represents the Fibonacci code for ', output)
