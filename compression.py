@@ -29,9 +29,6 @@ def encode(n):
 			else:
 				code = '0' + code
 		return code
-	else:
-		print("Please enter a valid positive integer")
-		return 0
 
 def decode(n):
 	if len(str(n)) > 1:
@@ -39,13 +36,13 @@ def decode(n):
 		fib = generate_sequence(n/2 +1)
 		n =[int(x) for x in str(n)]
 		n = n[:-1]
-		print(n)
-		print(fib)
 		for pos in range (0, len(n)):
 			result = result + fib[pos]*n[pos]
 
 		return result
 
+	else:
+		print('Please enter a valid sequence')
 
 if __name__ == "__main__":
 	if sys.argv[1] == 'e' and sys.argv[2].isdigit():
@@ -58,3 +55,5 @@ if __name__ == "__main__":
 		print('Decoding ', n, ' using Fibonacci compression...')
 		output = decode(n)
 		print('The input ', n, 'represents the Fibonacci code for ', output)
+	else:
+		print('Please use the format "compression.py <e|d> <integer to encode/decode>".')
