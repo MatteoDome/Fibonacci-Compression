@@ -21,7 +21,6 @@ def encode(n):
 	if n >= 1 and n < 514228:
 		fib = generate_sequence(n)
 		code = '1'
-		print(code)
 		for i in reversed(fib):
 			if n >= i:
 				n = n - i
@@ -31,10 +30,10 @@ def encode(n):
 		return code
 
 def decode(n):
-	if len(str(n)) > 1:
+	if len(n) > 1:
 		result = 0
-		fib = generate_sequence(n/2 +1)
-		n =[int(x) for x in str(n)]
+		fib = generate_sequence(int(n))
+		n = list(map(int, str(n)))
 		n = n[:-1]
 		for pos in range (0, len(n)):
 			result = result + fib[pos]*n[pos]
@@ -50,8 +49,8 @@ if __name__ == "__main__":
 		print('Encoding ', n, ' using Fibonacci compression...')
 		output = encode(n)
 		print('The Fibonacci coding for ', n, 'is ', output)
-	if sys.argv[1] == 'd' and sys.argv[2].isdigit():
-		n = int(sys.argv[2])
+	elif sys.argv[1] == 'd' and sys.argv[2].isdigit():
+		n = str(sys.argv[2])
 		print('Decoding ', n, ' using Fibonacci compression...')
 		output = decode(n)
 		print('The input ', n, 'represents the Fibonacci code for ', output)
